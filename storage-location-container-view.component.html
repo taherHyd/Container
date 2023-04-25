@@ -1,0 +1,41 @@
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-6">
+<div class='p-field-checkbox'>
+  <p-checkbox [binary]='true' label='Show Detail' ></p-checkbox>
+</div>
+</div>
+<div class="p-field p-col-12 p-md-6" style="text-align: right">
+  <button icon="pi pi-check" label="Print Preview" pButton pRipple (click)="onPrintReview()" class="p-button-primary"></button>
+</div>
+</div>
+<div style="padding:10%;">
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-12">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th *ngFor="let column of columnValues" [ngStyle]="{'background-color': 'gray','color':'white' }">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rowValues; let i = index">
+          <td [ngStyle]="{'background-color': 'gray','color':'white' }">{{ row }}</td>
+          <td *ngFor="let column of columnValues">
+            <span *ngIf="checkForSpecimen(row,column)">
+              <span *ngIf="isShowDetail" >{{currentAccessioNumber}}</span>
+              <span [pTooltip]="currentAccessioNumber" *ngIf="!isShowDetail" >x</span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-12">
+    Hover over 'X' to see what specimen is stored in that location
+  </div>
+</div>
+</div>
